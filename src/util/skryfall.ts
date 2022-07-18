@@ -5,6 +5,7 @@ import { TCGPlayerRow } from '../../type/csv';
 import logger from './logger';
 import { cleanName } from './tcgplayer';
 import SetReplace from '../../set-replace.json';
+import { SkryfallCard } from '../../type/skryfall';
 
 const axios = Axios.create({
     baseURL: 'https://api.scryfall.com'
@@ -42,7 +43,7 @@ export const saveBulkData = async () => {
 /**
  * Convert all cards to skryfall format
  */
-export const convertToSkryfall = async (cards: TCGPlayerRow[]) => {
+export const convertToSkryfall = (cards: TCGPlayerRow[]): SkryfallCard[] => {
     const skryfallData = require('../../default-cards.json');
 
     const toReturn: any = [];
@@ -83,6 +84,19 @@ export const convertToSkryfall = async (cards: TCGPlayerRow[]) => {
         if (filtered.length !== 1 && filteredFromProductId !== 1)
             throw new Error(`Could not find skryfall information for card: ` + JSON.stringify(card, null, 4));
         
+        if (filteredFromProductId[0]) {
+            filteredFromProductId[0].count = card.Quantity;
+            filteredFromProductId[0].isCardFoil = card.Printing === 'Foil';
+            filteredFromProductId[0].condition = card.Condition; 
+        }
+
+        if (filtered[0]) {
+            filtered[0].count = card.Quantity;
+            filtered[0].isCardFoil = card.Printing === 'Foil';
+            filtered[0].condition = card.Condition;
+        }
+
+
         toReturn.push(filteredFromProductId[0] || filtered[0]);
     }
 

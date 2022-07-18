@@ -1,124 +1,109 @@
 export interface SkryfallCard {
     object: string;
+    count: number;
+    isCardFoil: boolean;
+    condition: string;
     id: string;
     oracle_id: string;
     multiverse_ids: string[];
+    mtgo_id: number;
+    mtgo_foil_id: number;
+    tcgplayer_id: number;
+    cardmarket_id: number;
+    name: string;
+    lang: string;
+    released_at: string;
+    uri: string;
+    scryfall_uri: string;
+    layout: string;
+    highres_image: boolean;
+    image_status: "highres_scan";
+    image_uris: {
+        small: string;
+        normal: string;
+        large: string;
+        png: string;
+        art_crop: string;
+        border_crop: string;
+    };
+    mana_cost: string;
+    cmc: number;
+    type_line: string;
+    oracle_text: string;
+    power: string;
+    toughness: string;
+    colors: string[];
+    color_identity: [
+        "R"
+    ];
+    keywords: string[];
+    legalities: {
+        standard: "legal"|"not_legal",
+        future: "legal"|"not_legal",
+        historic: "legal"|"not_legal",
+        gladiator: "legal"|"not_legal",
+        pioneer: "legal"|"not_legal",
+        explorer: "legal"|"not_legal",
+        modern: "legal"|"not_legal",
+        legacy: "legal"|"not_legal",
+        pauper: "legal"|"not_legal",
+        vintage: "legal"|"not_legal",
+        penny: "legal"|"not_legal",
+        commander: "legal"|"not_legal",
+        brawl: "legal"|"not_legal",
+        historicbrawl: "legal"|"not_legal",
+        alchemy: "legal"|"not_legal",
+        paupercommander: "legal"|"not_legal",
+        duel: "legal"|"not_legal",
+        oldschool: "legal"|"not_legal",
+        premodern: "legal"|"not_legal",
+    };
+    games: string[];
+    reserved: boolean;
+    foil: boolean;
+    nonfoil: boolean;
+    finishes: string[];
+    oversized: boolean;
+    promo: boolean;
+    reprint: boolean;
+    variation: boolean;
+    set_id: string;
+    set: string;
+    set_name: string;
+    set_type: string;
+    set_uri: string;
+    set_search_uri: string;
+    scryfall_set_uri: string;
+    rulings_uri: string;
+    prints_seach_uri: string;
+    collector_number: string;
+    digital: boolean;
+    rarity: string;
+    flavor_text: string;
+    card_back_id: string;
+    artist: string;
+    artist_ids: string[];
+    illustration_id: string;
+    border_color: string;
+    frame: string;
+    full_art: boolean;
+    textless: boolean;
+    booster: boolean;
+    story_spotlight: boolean;
+    edhrec_rank: number;
+    penny_rank: number;
+    prices: {
+        usd: string;
+        usd_foil: string;
+        usd_etched: string;
+        eur: string;
+        eur_foil: string;
+        tix: string;
+    };
+    related_uris: {
+        gatherer: string;
+        tcgplayer_infinite_articles: string;
+        tcgplayer_infinite_decks: string;
+        edhrec: string; 
+    }
 }
-
-// {
-//     "object": "card",
-//     "id": "0000579f-7b35-4ed3-b44c-db2a538066fe",
-//     "oracle_id": "44623693-51d6-49ad-8cd7-140505caf02f",
-//     "multiverse_ids": [
-//         109722
-//     ],
-//     "mtgo_id": 25527,
-//     "mtgo_foil_id": 25528,
-//     "tcgplayer_id": 14240,
-//     "cardmarket_id": 13850,
-//     "name": "Fury Sliver",
-//     "lang": "en",
-//     "released_at": "2006-10-06",
-//     "uri": "https://api.scryfall.com/cards/0000579f-7b35-4ed3-b44c-db2a538066fe",
-//     "scryfall_uri": "https://scryfall.com/card/tsp/157/fury-sliver?utm_source=api",
-//     "layout": "normal",
-//     "highres_image": true,
-//     "image_status": "highres_scan",
-//     "image_uris": {
-//         "small": "https://c1.scryfall.com/file/scryfall-cards/small/front/0/0/0000579f-7b35-4ed3-b44c-db2a538066fe.jpg?1562894979",
-//         "normal": "https://c1.scryfall.com/file/scryfall-cards/normal/front/0/0/0000579f-7b35-4ed3-b44c-db2a538066fe.jpg?1562894979",
-//         "large": "https://c1.scryfall.com/file/scryfall-cards/large/front/0/0/0000579f-7b35-4ed3-b44c-db2a538066fe.jpg?1562894979",
-//         "png": "https://c1.scryfall.com/file/scryfall-cards/png/front/0/0/0000579f-7b35-4ed3-b44c-db2a538066fe.png?1562894979",
-//         "art_crop": "https://c1.scryfall.com/file/scryfall-cards/art_crop/front/0/0/0000579f-7b35-4ed3-b44c-db2a538066fe.jpg?1562894979",
-//         "border_crop": "https://c1.scryfall.com/file/scryfall-cards/border_crop/front/0/0/0000579f-7b35-4ed3-b44c-db2a538066fe.jpg?1562894979"
-//     },
-//     "mana_cost": "{5}{R}",
-//     "cmc": 6,
-//     "type_line": "Creature — Sliver",
-//     "oracle_text": "All Sliver creatures have double strike.",
-//     "power": "3",
-//     "toughness": "3",
-//     "colors": [
-//         "R"
-//     ],
-//     "color_identity": [
-//         "R"
-//     ],
-//     "keywords": [],
-//     "legalities": {
-//         "standard": "not_legal",
-//         "future": "not_legal",
-//         "historic": "not_legal",
-//         "gladiator": "not_legal",
-//         "pioneer": "not_legal",
-//         "explorer": "not_legal",
-//         "modern": "legal",
-//         "legacy": "legal",
-//         "pauper": "not_legal",
-//         "vintage": "legal",
-//         "penny": "legal",
-//         "commander": "legal",
-//         "brawl": "not_legal",
-//         "historicbrawl": "not_legal",
-//         "alchemy": "not_legal",
-//         "paupercommander": "restricted",
-//         "duel": "legal",
-//         "oldschool": "not_legal",
-//         "premodern": "not_legal"
-//     },
-//     "games": [
-//         "paper",
-//         "mtgo"
-//     ],
-//     "reserved": false,
-//     "foil": true,
-//     "nonfoil": true,
-//     "finishes": [
-//         "nonfoil",
-//         "foil"
-//     ],
-//     "oversized": false,
-//     "promo": false,
-//     "reprint": false,
-//     "variation": false,
-//     "set_id": "c1d109bc-ffd8-428f-8d7d-3f8d7e648046",
-//     "set": "tsp",
-//     "set_name": "Time Spiral",
-//     "set_type": "expansion",
-//     "set_uri": "https://api.scryfall.com/sets/c1d109bc-ffd8-428f-8d7d-3f8d7e648046",
-//     "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Atsp&unique=prints",
-//     "scryfall_set_uri": "https://scryfall.com/sets/tsp?utm_source=api",
-//     "rulings_uri": "https://api.scryfall.com/cards/0000579f-7b35-4ed3-b44c-db2a538066fe/rulings",
-//     "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A44623693-51d6-49ad-8cd7-140505caf02f&unique=prints",
-//     "collector_number": "157",
-//     "digital": false,
-//     "rarity": "uncommon",
-//     "flavor_text": "\"A rift opened, and our arrows were abruptly stilled. To move was to push the world. But the sliver's claw still twitched, red wounds appeared in Thed's chest, and ribbons of blood hung in the air.\"\n—Adom Capashen, Benalish hero",
-//     "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
-//     "artist": "Paolo Parente",
-//     "artist_ids": [
-//         "d48dd097-720d-476a-8722-6a02854ae28b"
-//     ],
-//     "illustration_id": "2fcca987-364c-4738-a75b-099d8a26d614",
-//     "border_color": "black",
-//     "frame": "2003",
-//     "full_art": false,
-//     "textless": false,
-//     "booster": true,
-//     "story_spotlight": false,
-//     "edhrec_rank": 5607,
-//     "penny_rank": 10394,
-//     "prices": {
-//         "usd": "0.33",
-//         "usd_foil": "4.50",
-//         "usd_etched": null,
-//         "eur": "0.04",
-//         "eur_foil": "1.00",
-//         "tix": "0.02"
-//     },
-//     "related_uris": {
-//         "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=109722",
-//         "tcgplayer_infinite_articles": "https://infinite.tcgplayer.com/search?contentMode=article&game=magic&partner=scryfall&q=Fury+Sliver&utm_campaign=affiliate&utm_medium=api&utm_source=scryfall",
-//         "tcgplayer_infinite_decks": "https://infinite.tcgplayer.com/search?contentMode=deck&game=magic&partner=scryfall&q=Fury+Sliver&utm_campaign=affiliate&utm_medium=api&utm_source=scryfall",
-//         "edhrec": "https://edhrec.com/route/?cc=Fury+Sliver"
-//     }

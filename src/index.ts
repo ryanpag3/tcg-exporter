@@ -1,4 +1,5 @@
 import path from 'path';
+import generateDeckBoxCsv from './transformer/deckbox';
 import { parseTCGPlayerCsv } from './util/file';
 import logger from './util/logger';
 import * as skryfall from './util/skryfall';
@@ -13,6 +14,7 @@ async function main() {
     const skryfallData = skryfall.convertToSkryfall(output);
     logger.info('Converted data to skryfall format.');
 
+    generateDeckBoxCsv(skryfallData);
     
     
 }
