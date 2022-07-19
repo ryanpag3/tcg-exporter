@@ -1,5 +1,6 @@
 import path from 'path';
-import generateDeckBoxCsv from './transformer/deckbox';
+import fs from 'fs';
+import generateDeckBoxCsv from './transformer/deckbox/generator';
 import { parseTCGPlayerCsv } from './util/file';
 import logger from './util/logger';
 import * as skryfall from './util/skryfall';
@@ -14,9 +15,9 @@ async function main() {
     const skryfallData = skryfall.convertToSkryfall(output);
     logger.info('Converted data to skryfall format.');
 
-    generateDeckBoxCsv(skryfallData);
+    const deckbox = generateDeckBoxCsv(skryfallData);
     
-    
+    fs.writeFileSync(path.join(__dirname, '../generated/deckbox.csv'), deckbox);
 }
 
 main();
