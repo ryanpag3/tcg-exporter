@@ -1,6 +1,8 @@
-import { SkryfallCard } from '../../type/skryfall';
+import { SkryfallCard } from '../../../type/skryfall';
 import { transform } from 'csv/sync';
-import logger from '../util/logger';
+import logger from '../../util/logger';
+import LanguageReplace from './language-replace.json';
+import SetNameReplace from './set-name-replace.json';
 
 
 /**
@@ -11,14 +13,18 @@ const generateDeckBoxCsv = (scryfallCards: SkryfallCard[]): string => {
     const columns = ['Count', 'Name', 'Edition', 'Card Number', 'Foil', 'Condition', 'Language'];
 
     let rows = scryfallCards.map((card: SkryfallCard) => {
+        // @ts-ignore
+        const setName = SetNameReplace[card.set_name] ? SetNameReplace[card.set_name] : card.set_name;
+
         return [
             card.count,
             card.name,
-            card.set_name,
+            setName,
             card.collector_number,
             card.isCardFoil === true ? 'Foil' : '',
             card.condition,
-            card.lang
+            // @ts-ignore
+            LanguageReplace[card.lang]
         ]
     });
 
